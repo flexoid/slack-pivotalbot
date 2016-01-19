@@ -1,0 +1,2 @@
+defmodule PivotalBot do
+end
