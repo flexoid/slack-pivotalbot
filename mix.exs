@@ -14,7 +14,8 @@ defmodule PivotalBot.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :httpoison, :cowboy, :plug],
+     mod: {PivotalBot, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -29,7 +30,9 @@ defmodule PivotalBot.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8.1"},
-      {:poison, "~> 2.0"}
+      {:poison, "~> 2.0"},
+      {:cowboy, "~>1.0.4"},
+      {:plug, "~>1.1.0"}
     ]
   end
 end
