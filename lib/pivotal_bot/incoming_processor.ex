@@ -30,7 +30,12 @@ defmodule PivotalBot.IncomingProcessor do
     |> Enum.map(fn story_id ->
       story_title = @story_url_base <> story_id
       story_text = PivotalBot.StoryFetcher.fetch_title(story_id)
-      %{title: story_title, title_link: story_title, text: story_text}
+      %{
+        title: story_title,
+        title_link: story_title,
+        text: story_text,
+        fallback: story_text
+      }
     end)
 
     %{attachments: attachments}
