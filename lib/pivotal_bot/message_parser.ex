@@ -5,8 +5,9 @@ defmodule PivotalBot.MessageParser do
   def parse(message) do
     regex = ~r/pivotaltracker.com\/story\/show\/(\d+)/i
 
-    Regex.scan(regex, message)
+    regex
+    |> Regex.scan(message)
     |> Enum.flat_map(fn([_ | match]) -> match end)
-    |> Enum.uniq
+    |> Enum.uniq()
   end
 end

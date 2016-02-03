@@ -32,7 +32,8 @@ defmodule PivotalBot.Mixfile do
       {:httpoison, "~> 0.8.1"},
       {:poison, "~> 2.0"},
       {:cowboy, "~>1.0.4"},
-      {:plug, "~>1.1.0"}
+      {:plug, "~>1.1.0"},
+      {:credo, "~> 0.2", only: [:dev, :test]}
     ]
   end
 end

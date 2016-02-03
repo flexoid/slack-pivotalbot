@@ -1,12 +1,13 @@
 defmodule PivotalBot.Server do
   use Plug.Router
+  require Logger
 
   plug :match
   plug Plug.Parsers, parsers: [:urlencoded, :json], json_decoder: Poison
   plug :dispatch
 
   post "/incoming" do
-    IO.inspect(conn.params)
+    Logger.info("Got message: #{conn.params}")
 
     case PivotalBot.IncomingProcessor.prepare_response(conn.params) do
       {:ok, message} ->
@@ -14,7 +15,7 @@ defmodule PivotalBot.Server do
         |> put_resp_content_type("application/json")
         |> send_resp(200, Poison.encode!(message))
       {:error, err} ->
-        IO.inspect(err)
+        Logger.error(inspect(err))
         conn |> send_resp(200, "")
     end
   end
