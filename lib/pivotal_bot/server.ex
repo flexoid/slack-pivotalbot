@@ -7,7 +7,7 @@ defmodule PivotalBot.Server do
   plug :dispatch
 
   post "/incoming" do
-    Logger.info("Got message: #{conn.params}")
+    Logger.info("Got message: #{inspect(conn.params)}")
 
     case PivotalBot.IncomingProcessor.prepare_response(conn.params) do
       {:ok, message} ->
