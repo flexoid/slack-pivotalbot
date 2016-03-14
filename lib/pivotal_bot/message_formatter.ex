@@ -29,7 +29,7 @@ defmodule PivotalBot.MessageFormatter do
   defp message_title(story) do
     title = story_image(story)
     if estimate_image(story) do
-      title = "#{title} #{story_image(story)} #{estimate_image(story)}"
+      title = "#{title} #{estimate_image(story)}"
     end
     "#{title} #{story["url"]}"
   end
