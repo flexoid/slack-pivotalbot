@@ -12,7 +12,7 @@ defmodule PivotalBot.IncomingProcessor do
         if length(ids) <= 0 do
           {:error, "No ids in message"}
         else
-          {:ok, format_message(ids)}
+          {:ok, message_for_stories(ids)}
         end
     end
   end
@@ -25,20 +25,10 @@ defmodule PivotalBot.IncomingProcessor do
     params["token"] != hook_token
   end
 
-  defp format_message(story_ids) do
-    attachments = story_ids
-    |> Enum.map(fn story_id ->
-      story_title = @story_url_base <> story_id
-      story_text = PivotalBot.StoryFetcher.fetch_title(story_id)
-      %{
-        title: story_title,
-        title_link: story_title,
-        text: story_text,
-        fallback: story_text
-      }
-    end)
-
-    %{attachments: attachments}
+  defp message_for_stories(story_ids) do
+    story_ids
+    |> Enum.map(&PivotalBot.StoryFetcher.fetch_story(&1))
+    |> PivotalBot.MessageFormatter.build_message()
   end
 
   defp hook_token do
