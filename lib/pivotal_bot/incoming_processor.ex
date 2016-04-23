@@ -32,6 +32,6 @@ defmodule PivotalBot.IncomingProcessor do
   end
 
   defp hook_token do
-    Application.fetch_env!(:pivotal_bot, :pivotal_tracker_hook_token)
+    Application.fetch_env!(:pivotal_bot, :slack_webhook_token)
   end
 end
