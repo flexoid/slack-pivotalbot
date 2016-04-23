@@ -1,0 +1,6 @@
+version: '2'
+services:
+  bot:
+    build: .
+    ports:
+      - "4000:4000"
