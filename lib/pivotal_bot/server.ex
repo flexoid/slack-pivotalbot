@@ -15,7 +15,7 @@ defmodule PivotalBot.Server do
         |> put_resp_content_type("application/json")
         |> send_resp(200, Poison.encode!(message))
       {:error, err} ->
-        Logger.error(inspect(err))
+        Logger.info(inspect(err))
         conn |> send_resp(200, "")
     end
   end
