@@ -15,7 +15,7 @@ RUN wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && \
   apt-key add erlang_solutions.asc
 
 RUN apt-get update && \
-  apt-get install -y esl-erlang elixir
+  apt-get install -y esl-erlang elixir supervisor
 
 RUN mix local.hex --force && \
   mix local.rebar --force
@@ -34,6 +34,17 @@ COPY config $APP_HOME/config
 RUN MIX_ENV=prod mix compile
 RUN MIX_ENV=prod mix release --no-confirm-missing
 
+RUN echo '\
+[supervisord]\n\
+nodaemon=true\n\
+\n\
+[program:bot]\n\
+command=/app/rel/pivotal_bot/bin/pivotal_bot foreground\n\
+stdout_logfile=/dev/fd/1\n\
+stdout_logfile_maxbytes=0\n\
+redirect_stderr=true\
+' > supervisord.conf
+
 EXPOSE 4000
 
-CMD trap exit TERM; rel/pivotal_bot/bin/pivotal_bot foreground & wait
+CMD ["supervisord", "-c", "supervisord.conf"]
