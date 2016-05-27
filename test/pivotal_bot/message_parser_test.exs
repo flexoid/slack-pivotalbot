@@ -9,8 +9,15 @@ defmodule PivotalBot.MessageParserTest do
     and different
     format https://www.pivotaltracker.com/projects/12412/stories/873924 also
     should work
+    https://www.pivotaltracker.com/n/projects/1234/stories/989213175
     """
-    assert PivotalBot.MessageParser.parse(message) == ["172893694", "11237854", "939764745", "873924"]
+    assert PivotalBot.MessageParser.parse(message) == [
+      "172893694",
+      "11237854",
+      "939764745",
+      "873924",
+      "989213175"
+    ]
   end
 
   test "returns empty list if there's no story ids in message" do

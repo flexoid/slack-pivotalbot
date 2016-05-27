@@ -3,7 +3,7 @@ defmodule PivotalBot.MessageParser do
   Parses story_id from the message.
   """
   def parse(message) do
-    regex = ~r/pivotaltracker.com\/(?:story\/show|projects\/\d+\/stories)\/(\d+)/i
+    regex = ~r/pivotaltracker.com(?:\/n)?\/(?:story\/show|projects\/\d+\/stories)\/(\d+)/i
 
     regex
     |> Regex.scan(message)
