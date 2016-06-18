@@ -24,9 +24,7 @@ defmodule PivotalBot.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.0.0-rc.6"},
       {:credo, "~> 0.2", only: [:dev, :test]},
-      {:exrm, "~> 1.0.3", override: true},
-      {:conform, git: "https://github.com/bitwalker/conform", override: true},
-      {:conform_exrm, "~> 1.0"},
+      {:exrm, "~> 1.0.3"},
     ]
   end
 end
