@@ -12,11 +12,11 @@ defmodule PivotalBot.MessageParserTest do
     https://www.pivotaltracker.com/n/projects/1234/stories/989213175
     """
     assert PivotalBot.MessageParser.parse(message) == [
-      "172893694",
-      "11237854",
-      "939764745",
-      "873924",
-      "989213175"
+      172893694,
+      11237854,
+      939764745,
+      873924,
+      989213175
     ]
   end
 
@@ -33,6 +33,6 @@ defmodule PivotalBot.MessageParserTest do
     pivotaltracker.com/story/show/123 and pivotaltracker.com/story/show/237
     and pivotaltracker.com/story/show/123
     """
-    assert PivotalBot.MessageParser.parse(message) === ["123", "237"]
+    assert PivotalBot.MessageParser.parse(message) === [123, 237]
   end
 end
