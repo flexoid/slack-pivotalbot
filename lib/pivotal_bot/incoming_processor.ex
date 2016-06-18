@@ -8,7 +8,7 @@ defmodule PivotalBot.IncomingProcessor do
         if length(ids) <= 0 do
           {:error, "No ids in message"}
         else
-          {:ok, message_for_stories(ids, message[:channel])}
+          {:ok, ids, message_for_stories(ids, message[:channel])}
         end
     end
   end

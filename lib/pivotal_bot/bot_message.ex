@@ -1,7 +1,10 @@
 defmodule PivotalBot.BotMessage do
   use Ecto.Schema
 
-  schema "bot_messages" do
-    field :ts
+  schema "messages" do
+    field :ts, :string, null: false
+    field :story_ids, {:array, :integer}
+
+    timestamps
   end
 end
