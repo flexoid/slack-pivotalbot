@@ -1,20 +1,29 @@
-# PivotalBot
+# Pivotal Tracker Slack Bot
 
 Slack bot that extracts pivotal tracker story ids from the chat messages and
-provides story titles for them.
+provides descriptions for them.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+  1. Provide app config:
 
-  1. Add pivotal_bot to your list of dependencies in `mix.exs`:
+        cp config/secrets.exs.example config/secrets.exs
+        vim config/secrets.exs
 
-        def deps do
-          [{:pivotal_bot, "~> 0.0.1"}]
-        end
+  2. Prepare database:
 
-  2. Ensure pivotal_bot is started before your application:
+        mix do ecto.create ecto.migrate
 
-        def application do
-          [applications: [:pivotal_bot]]
-        end
+  3. Run:
+
+        iex -S mix
+
+## Release and deploy
+
+Prepare release with following command and run it manually:
+
+    mix release
+
+Or use provided Docker config:
+
+    docker-compose up -d
