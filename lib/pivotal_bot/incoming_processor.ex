@@ -1,6 +1,4 @@
 defmodule PivotalBot.IncomingProcessor do
-  @story_url_base "https://www.pivotaltracker.com/story/show/"
-
   def prepare_response(message) do
     cond do
       message_from_bot?(message) ->

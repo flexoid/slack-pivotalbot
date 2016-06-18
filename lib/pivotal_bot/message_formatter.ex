@@ -2,7 +2,7 @@ defmodule PivotalBot.MessageFormatter do
 
   def build_message(stories, channel) do
     attachments = Enum.map stories, fn story -> attachment_for_story(story) end
-    %{channel: channel, attachments: attachments}
+    %{channel: channel, attachments: attachments, as_user: "true"}
   end
 
   defp attachment_for_story(story) do
@@ -31,7 +31,7 @@ defmodule PivotalBot.MessageFormatter do
     if estimate_image(story) do
       title = "#{title} #{estimate_image(story)}"
     end
-    "#{title} #{story["url"]}"
+    "#{title} ##{story["id"]}"
   end
 
   defp story_description(story) do
