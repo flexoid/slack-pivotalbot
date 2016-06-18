@@ -9,6 +9,8 @@ defmodule PivotalBot.Bot do
 
   def handle_message(message = %{type: "message"}, slack, state) do
     Logger.info("Got message: #{inspect(message)}")
+    PivotalBot.IncomingHandler.handle_async(message)
+
     {:ok, state}
  end
 

@@ -11,7 +11,7 @@ defmodule PivotalBot.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :slack, :httpoison],
+    [applications: [:logger, :slack, :httpoison, :poison],
      mod: {PivotalBot, []}]
   end
 

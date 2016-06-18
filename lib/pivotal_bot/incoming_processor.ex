@@ -1,37 +1,27 @@
 defmodule PivotalBot.IncomingProcessor do
   @story_url_base "https://www.pivotaltracker.com/story/show/"
 
-  def prepare_response(params) do
+  def prepare_response(message) do
     cond do
-      hook_token_mismatch?(params) ->
-        {:error, "Invalid hook token"}
-      message_from_bot?(params) ->
+      message_from_bot?(message) ->
         {:error, "Ignore bot message"}
       true ->
-        ids = PivotalBot.MessageParser.parse(params["text"])
+        ids = PivotalBot.MessageParser.parse(message[:text])
         if length(ids) <= 0 do
           {:error, "No ids in message"}
         else
-          {:ok, message_for_stories(ids)}
+          {:ok, message_for_stories(ids, message[:channel])}
         end
     end
   end
 
-  defp message_from_bot?(params) do
-    !!params["bot_id"]
+  defp message_from_bot?(message) do
+    !!message[:bot_id]
   end
 
-  defp hook_token_mismatch?(params) do
-    params["token"] != hook_token
-  end
-
-  defp message_for_stories(story_ids) do
+  defp message_for_stories(story_ids, channel) do
     story_ids
     |> Enum.map(&PivotalBot.StoryFetcher.fetch_story(&1))
-    |> PivotalBot.MessageFormatter.build_message()
-  end
-
-  defp hook_token do
-    Application.fetch_env!(:pivotal_bot, :slack_webhook_token)
+    |> PivotalBot.MessageFormatter.build_message(channel)
   end
 end

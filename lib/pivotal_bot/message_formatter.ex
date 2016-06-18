@@ -1,8 +1,8 @@
 defmodule PivotalBot.MessageFormatter do
 
-  def build_message(stories) do
+  def build_message(stories, channel) do
     attachments = Enum.map stories, fn story -> attachment_for_story(story) end
-    %{attachments: attachments}
+    %{channel: channel, attachments: attachments}
   end
 
   defp attachment_for_story(story) do
