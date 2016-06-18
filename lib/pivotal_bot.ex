@@ -5,7 +5,8 @@ defmodule PivotalBot do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(PivotalBot.Bot, [])
+      worker(PivotalBot.Bot, []),
+      worker(PivotalBot.Repo, [])
     ]
 
     opts = [strategy: :one_for_one, name: PivotalBot.Supervisor]

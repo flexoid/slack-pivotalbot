@@ -11,7 +11,7 @@ defmodule PivotalBot.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :slack, :httpoison, :poison],
+    [applications: [:logger, :slack, :httpoison, :poison, :postgrex, :ecto],
      mod: {PivotalBot, []}]
   end
 
@@ -21,9 +21,11 @@ defmodule PivotalBot.Mixfile do
       {:slack, "~> 0.5.0"},
       {:websocket_client, git: "https://github.com/jeremyong/websocket_client"},
       {:poison, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 2.0.0-rc.6"},
       {:credo, "~> 0.2", only: [:dev, :test]},
       {:exrm, "~> 1.0.3", override: true},
-      {:conform, "~> 2.0", override: true},
+      {:conform, git: "https://github.com/bitwalker/conform", override: true},
       {:conform_exrm, "~> 1.0"},
     ]
   end
