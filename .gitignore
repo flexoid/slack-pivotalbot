@@ -4,4 +4,5 @@
 erl_crash.dump
 *.ez
 /config/pivotal_bot.conf
+/config/sys.config
 /rel

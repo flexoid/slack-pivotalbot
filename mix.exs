@@ -10,29 +10,17 @@ defmodule PivotalBot.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison, :cowboy, :plug, :poison],
+    [applications: [:logger, :slack, :httpoison],
      mod: {PivotalBot, []}]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [
       {:httpoison, "~> 0.8.1"},
+      {:slack, "~> 0.5.0"},
+      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"},
       {:poison, "~> 2.0"},
-      {:cowboy, "~>1.0.4"},
-      {:plug, "~>1.1.0"},
       {:credo, "~> 0.2", only: [:dev, :test]},
       {:exrm, "~> 1.0.3", override: true},
       {:conform, "~> 2.0", override: true},
