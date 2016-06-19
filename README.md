@@ -20,10 +20,25 @@ provides descriptions for them.
 
 ## Release and deploy
 
+### Manual
+
 Prepare release with following command and run it manually:
 
     mix release
 
-Or use provided Docker config:
+    rel/pivotal_bot/bin/pivotal_bot foreground
 
-    docker-compose up -d
+### Docker
+
+Requirements:
+  * docker
+  * docker-compose
+
+Prepare config for docker release:
+
+    cp config/docker_secrets.exs.example config/docker_secrets.exs
+    vim config/docker_secrets.exs
+
+Then use provided script to build and deploy containers:
+
+    ./docker-deploy.sh
