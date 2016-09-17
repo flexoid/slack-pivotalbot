@@ -3,6 +3,7 @@ defmodule PivotalBot.Repo.Migrations.AddMessagesTable do
 
   def change do
     create table(:messages) do
+      add :channel, :string
       add :ts, :string
       add :story_ids, {:array, :integer}
       timestamps

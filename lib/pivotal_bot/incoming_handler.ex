@@ -10,7 +10,7 @@ defmodule PivotalBot.IncomingHandler do
     case IncomingProcessor.prepare_response(message) do
       {:ok, ids, response_message} ->
         Logger.info(inspect(ids))
-        Repo.insert!(%BotMessage{ts: message[:ts], story_ids: ids})
+        Repo.insert!(%BotMessage{channel: message[:channel], ts: message[:ts], story_ids: ids})
         SlackClient.chat_post_message(response_message)
       {:error, err} ->
         Logger.info(inspect(err))
