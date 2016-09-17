@@ -11,7 +11,7 @@ defmodule PivotalBot.MessageParserTest do
     should work
     https://www.pivotaltracker.com/n/projects/1234/stories/989213175
     """
-    assert PivotalBot.MessageParser.parse(message) == [
+    assert PivotalBot.MessageParser.extract_story_ids(message) == [
       172893694,
       11237854,
       939764745,
@@ -25,7 +25,7 @@ defmodule PivotalBot.MessageParserTest do
     some message without links 123 http://example.com/123 other links
     here https://www.pivotaltracker.com/n/projects/41245
     """
-    assert PivotalBot.MessageParser.parse(message) == []
+    assert PivotalBot.MessageParser.extract_story_ids(message) == []
   end
 
   test "extracts only uniq ids" do
@@ -33,6 +33,6 @@ defmodule PivotalBot.MessageParserTest do
     pivotaltracker.com/story/show/123 and pivotaltracker.com/story/show/237
     and pivotaltracker.com/story/show/123
     """
-    assert PivotalBot.MessageParser.parse(message) === [123, 237]
+    assert PivotalBot.MessageParser.extract_story_ids(message) === [123, 237]
   end
 end

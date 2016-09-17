@@ -1,8 +1,5 @@
 defmodule PivotalBot.MessageParser do
-  @doc """
-  Parses story_id from the message.
-  """
-  def parse(message) do
+  def extract_story_ids(message) do
     regex = ~r/pivotaltracker.com(?:\/n)?\/(?:story\/show|projects\/\d+\/stories)\/(\d+)/i
 
     regex

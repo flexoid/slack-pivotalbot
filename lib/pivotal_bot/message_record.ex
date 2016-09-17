@@ -1,4 +1,4 @@
-defmodule PivotalBot.BotMessage do
+defmodule PivotalBot.MessageRecord do
   use Ecto.Schema
 
   schema "messages" do
