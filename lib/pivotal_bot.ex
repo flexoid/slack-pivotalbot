@@ -5,7 +5,7 @@ defmodule PivotalBot do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(PivotalBot.Bot, []),
+      worker(PivotalBot.Bot, [PivotalBot.Bot.slack_token()]),
       worker(PivotalBot.Repo, [])
     ]
 
