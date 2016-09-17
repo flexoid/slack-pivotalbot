@@ -10,10 +10,27 @@ defmodule PivotalBot.IncomingHandler do
     case IncomingProcessor.prepare_response(message) do
       {:ok, ids, response_message} ->
         Logger.info(inspect(ids))
-        Repo.insert!(%BotMessage{channel: message[:channel], ts: message[:ts], story_ids: ids})
-        SlackClient.chat_post_message(response_message)
+        record = store_message(message, ids)
+
+        post_response = SlackClient.chat_post_message(response_message)
+        response_ts = post_response.body["message"]["ts"]
+        store_response(record, response_ts)
       {:error, err} ->
         Logger.info(inspect(err))
     end
+  end
+
+  defp store_message(message, story_ids) do
+    record = %BotMessage{
+      channel: message[:channel],
+      ts: message[:ts],
+      story_ids: story_ids,
+    }
+    Repo.insert!(record)
+  end
+
+  defp store_response(record, response_ts) when response_ts != nil do
+    record = Ecto.Changeset.change(record, response_ts: response_ts)
+    Repo.update!(record)
   end
 end

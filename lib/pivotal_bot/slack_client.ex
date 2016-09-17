@@ -4,9 +4,12 @@ defmodule PivotalBot.SlackClient do
   def chat_post_message(message) do
     params = Map.merge(auth_params, message)
 
-    if params[:attachments] do
-      params = %{params | attachments: Poison.encode!(params[:attachments])}
-    end
+    params =
+      if params[:attachments] do
+        %{params | attachments: Poison.encode!(params[:attachments])}
+      else
+        params
+      end
 
     post!("/chat.postMessage", params_to_body(params))
   end
@@ -17,6 +20,10 @@ defmodule PivotalBot.SlackClient do
 
   defp process_request_headers(headers) do
     headers ++ ["Content-Type": "application/x-www-form-urlencoded"]
+  end
+
+  def process_response_body(body) do
+    Poison.decode!(body)
   end
 
   defp params_to_body(params_map) do
