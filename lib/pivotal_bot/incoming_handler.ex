@@ -71,6 +71,10 @@ defmodule PivotalBot.IncomingHandler do
         Logger.info("Updated unresponded message [channel: #{inspect(channel)}, " <>
           "ts: #{inspect(ts)}] has following ids: #{inspect(story_ids)}")
 
+        unless record do
+          record = store_message_record(channel, ts, story_ids)
+        end
+
         post_response_message(record, channel, ts, story_ids)
       true ->
         nil
