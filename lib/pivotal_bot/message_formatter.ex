@@ -58,6 +58,7 @@ defmodule PivotalBot.MessageFormatter do
 
   defp estimate_image(story) do
     case story["estimate"] do
+      0 -> ":zero:"
       1 -> ":one:"
       2 -> ":two:"
       3 -> ":three:"
