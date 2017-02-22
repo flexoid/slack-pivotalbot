@@ -22,7 +22,8 @@ defmodule PivotalBot.MessageFormatter do
           value: story_labels_text(story),
           short: true
         }
-      ]
+      ],
+      mrkdwn_in: ["text"]
     }
   end
 
