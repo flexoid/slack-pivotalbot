@@ -18,13 +18,12 @@ defmodule PivotalBot.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.8.3"},
-      {:slack, "~> 0.7.0"},
-      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"},
-      {:poison, "~> 2.2.0"},
-      {:postgrex, "~> 0.12.0"},
-      {:ecto, "~> 2.0.5"},
-      {:credo, "~> 0.4", only: [:dev, :test]},
+      {:httpoison, "~> 0.11.0"},
+      {:slack, "~> 0.10.0"},
+      {:poison, "~> 3.0.0"},
+      {:postgrex, "~> 0.13.0"},
+      {:ecto, "~> 2.1.3"},
+      {:credo, "~> 0.6", only: [:dev, :test]},
       {:exrm, "~> 1.0.8"},
     ]
   end
