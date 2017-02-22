@@ -7,6 +7,6 @@ defmodule PivotalBot.MessageRecord do
     field :story_ids, {:array, :integer}
     field :response_ts, :string
 
-    timestamps
+    timestamps()
   end
 end

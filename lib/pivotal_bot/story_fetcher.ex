@@ -7,7 +7,7 @@ defmodule PivotalBot.StoryFetcher do
   def fetch_story(story_id) do
     url = "https://www.pivotaltracker.com/services/v5/stories/#{story_id}"
 
-    HTTPoison.get!(url, [{@token_header, token}]).body
+    HTTPoison.get!(url, [{@token_header, token()}]).body
     |> Poison.decode!
   end
 

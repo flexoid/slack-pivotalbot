@@ -27,14 +27,14 @@ defmodule PivotalBot.IncomingHandler do
         "ts: #{inspect(ts)}] with story ids: #{inspect(story_ids)}")
 
       message_record = store_message_record(channel, ts, story_ids)
-      response_ts = post_response_message(message_record, channel, ts, story_ids)
+      response_ts = post_response_message(message_record, channel, story_ids)
 
       Logger.info("Responded to message [channel: #{inspect(channel)}, " <>
         "ts: #{inspect(ts)}] with message #{inspect(response_ts)}")
     end
   end
 
-  defp post_response_message(message_record, channel, ts, story_ids) do
+  defp post_response_message(message_record, channel, story_ids) do
     response_message = response_message_for_ids(story_ids, channel)
 
     response = SlackClient.chat_post_message(response_message)
@@ -70,12 +70,9 @@ defmodule PivotalBot.IncomingHandler do
       length(story_ids) > 0 ->
         Logger.info("Updated unresponded message [channel: #{inspect(channel)}, " <>
           "ts: #{inspect(ts)}] has following ids: #{inspect(story_ids)}")
+        record = record || store_message_record(channel, ts, story_ids)
 
-        unless record do
-          record = store_message_record(channel, ts, story_ids)
-        end
-
-        post_response_message(record, channel, ts, story_ids)
+        post_response_message(record, channel, story_ids)
       true ->
         nil
     end

@@ -2,7 +2,7 @@ defmodule PivotalBot.SlackClient do
   use HTTPoison.Base
 
   def chat_post_message(message) do
-    params = Map.merge(auth_params, message)
+    params = Map.merge(auth_params(), message)
 
     params =
       if params[:attachments] do
@@ -15,7 +15,7 @@ defmodule PivotalBot.SlackClient do
   end
 
   def chat_update(message) do
-    params = Map.merge(auth_params, message)
+    params = Map.merge(auth_params(), message)
 
     params =
       if params[:attachments] do
