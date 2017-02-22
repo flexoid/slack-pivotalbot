@@ -3,6 +3,5 @@
 /deps
 erl_crash.dump
 *.ez
-/rel
 /config/secrets.exs
 /config/docker_secrets.exs

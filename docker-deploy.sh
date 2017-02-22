@@ -10,7 +10,7 @@ docker-compose up -d db
 docker-compose run --rm bot dockerize -wait tcp://db:5432
 
 # run database migrations
-docker-compose run bot sh -c 'MIX_ENV=prod mix ecto.migrate'
+docker-compose run --rm bot sh -c 'MIX_ENV=prod mix ecto.migrate'
 
 # ensure all containers are up and running
 docker-compose up -d

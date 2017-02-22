@@ -1,7 +1,7 @@
 .git
-_build
-deps
-rel
-cover
+/_build
+/deps
+/cover
+/test
 erl_crash.dump
 *.ez

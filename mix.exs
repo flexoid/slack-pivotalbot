@@ -4,10 +4,10 @@ defmodule PivotalBot.Mixfile do
   def project do
     [app: :pivotal_bot,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
@@ -24,7 +24,7 @@ defmodule PivotalBot.Mixfile do
       {:postgrex, "~> 0.13.0"},
       {:ecto, "~> 2.1.3"},
       {:credo, "~> 0.6", only: [:dev, :test]},
-      {:exrm, "~> 1.0.8"},
+      {:distillery, "~> 1.1"}
     ]
   end
 end
