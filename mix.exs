@@ -18,13 +18,13 @@ defmodule PivotalBot.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.11.0"},
-      {:slack, "~> 0.10.0"},
-      {:poison, "~> 3.0.0"},
-      {:postgrex, "~> 0.13.0"},
-      {:ecto, "~> 2.1.3"},
-      {:credo, "~> 0.6", only: [:dev, :test]},
-      {:distillery, "~> 1.1"}
+      {:httpoison, "~> 0.13"},
+      {:slack, "~> 0.12"},
+      {:poison, "~> 3.1"},
+      {:postgrex, "~> 0.13"},
+      {:ecto, "~> 2.1"},
+      {:credo, ">= 0.0.0", only: [:dev, :test]},
+      {:distillery, "~> 1.4"}
     ]
   end
 end
