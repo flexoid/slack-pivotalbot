@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/bin/sh
+
+set -e
+
+cp config/docker_secrets.exs.example config/docker_secrets.exs
+
+sed -i "s#PIVOTAL_TRACKER_TOKEN#$PIVOTALTRACKER_SECRET_TOKEN#" config/docker_secrets.exs
+sed -i "s#SLACK_TOKEN#$BOT_SLACK_TOKEN#" config/docker_secrets.exs
 
 # build app image
 docker-compose build
