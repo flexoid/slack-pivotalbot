@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  tags:
+    - shell
+  variables:
+    COMPOSE_PROJECT_NAME: "pivotal-bot"
+  script:
+    - ./deploy/docker-deploy.sh
